@@ -1,46 +1,49 @@
 schema_version: 1
 
 context:
-  name: mtcnn
-  version: "0.1.1"
+  version: 1.0.0
 
 package:
   name: mtcnn
   version: ${{ version }}
 
 source:
-  url: https://pypi.io/packages/source/mtcnn/mtcnn/mtcnn-${{ version }}.tar.gz
-  sha256: d0957274584be62cb83d4a089041f8ee3cf3b1893e45f01ed3356f94a381302b
+- url: https://github.com/ipazc/mtcnn/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 90b2f337e359b6881891c4869689c642865cdfa91df1e232d35953b294e7a955
 
 build:
   number: 0
   noarch: python
-  script: ${{ PYTHON }} -m pip install . -vv
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
     - python ${{ python_min }}.*
   run:
-    - keras
-    - opencv
+    - joblib >=1.4.2
+    - lz4 >=4.3.3
+    - tensorflow >=2.12.0
     - python >=${{ python_min }}
-    - h5py
-    - numpy
-    - scipy
-    - pyyaml
-    - six
 
 tests:
   - python:
       imports:
         - mtcnn
-        - mtcnn.exceptions
         - mtcnn.network
-      pip_check: false
+      pip_check: true
       python_version:
       - ${{ python_min }}.*
       - '*'
+  - script:
+      - pytest -vvv tests/test_mtcnn.py
+    requirements:
+      run:
+        - pytest
+        - pytest-cov
+    files:
+      source:
+        - tests/
 
 about:
   license: MIT
