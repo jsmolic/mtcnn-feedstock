@@ -20,6 +20,7 @@ requirements:
   host:
     - pip
     - python ${{ python_min }}.*
+    - setuptools
   run:
     - joblib >=1.4.2
     - lz4 >=4.3.3
@@ -59,4 +60,3 @@ extra:
     - oblute
     - benhuff
     - rluria14
-
