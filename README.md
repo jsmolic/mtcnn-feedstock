@@ -192,6 +192,7 @@ Feedstock Maintainers
 
 * [@Tata17](https://github.com/Tata17/)
 * [@benhuff](https://github.com/benhuff/)
+* [@jsmolic](https://github.com/jsmolic/)
 * [@mxr-conda](https://github.com/mxr-conda/)
 * [@oblute](https://github.com/oblute/)
 * [@rluria14](https://github.com/rluria14/)
